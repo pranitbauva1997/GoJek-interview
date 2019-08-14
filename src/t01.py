@@ -1,13 +1,14 @@
 import unittest
 from parking_lot import ParkingLot
+from car         import Car
 
 class TestParkingLot(unittest.TestCase):
 
     def test_pk_10_cars_valid(self):
         pk = ParkingLot(10)
         self.assertEqual([None]*10, pk.vehicles)
-        self.assertEqual(10, pk.size)
-        self.assertNotEqual(None, pk.size)
+        self.assertEqual(10, len(pk.vehicles))
+        self.assertNotEqual(None, len(pk.vehicles))
 
     def test_pk_10_cars_invalid(self):
         pk = ParkingLot(10)
@@ -35,6 +36,16 @@ class TestParkingLot(unittest.TestCase):
         # Removing the car at 0th index from parking lot
         pk.vehicles[0] = None
         self.assertEqual(0, pk.get_first_empty())
+
+    def test_pk_car_complete_valid(self):
+        pk = ParkingLot(3)
+        car = Car.create_and_park(pk, "ABC", "White")
+
+        self.assertEqual(car, pk.vehicles[car.slot])
+        self.assertEqual(1, pk.get_first_empty())
+
+        pk.eject(0)
+        self.assertEqual(None, pk.vehicles[0])
 
 
 if __name__ == '__main__':
