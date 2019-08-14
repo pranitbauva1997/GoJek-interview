@@ -1,12 +1,12 @@
 class Car:
-    color = None
+    colour = None
     registration_no = None
     slot = None
 
-    def __init__(self, registration_no, color):
-        # Raise an exception if no registration number or no color
+    def __init__(self, registration_no, colour):
+        # Raise an exception if no registration number or no colour
         self.registration_no = registration_no
-        self.color = color
+        self.colour = colour
 
     def park(self, parking_lot):
         if len(parking_lot.vehicles) < 1:
@@ -16,8 +16,8 @@ class Car:
         self.slot = parking_lot.add(self)
 
     @staticmethod
-    def create_and_park(parking_lot, registration_no, color):
-        car = Car(registration_no, color)
+    def create_and_park(parking_lot, registration_no, colour):
+        car = Car(registration_no, colour)
         car.park(parking_lot)
 
         return car

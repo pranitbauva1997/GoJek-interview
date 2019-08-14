@@ -9,7 +9,7 @@ class ParkingLot:
     def add(self, car):
         slot = self.get_first_empty()
         self.vehicles[slot] = car
-        print "Allocated slot number: " + str(slot + 1)
+        print 'Allocated slot number: {}'.format(slot + 1)
         return slot
 
     def get_first_empty(self):
@@ -38,5 +38,20 @@ class ParkingLot:
 
             print '{0:<10} {1:<20} {2:<10}'.format(car.slot + 1,
                                                    car.registration_no,
-                                                   car.color)
+                                                   car.colour)
 
+    def registration_nos_for_cars_with_colour(self, colour):
+        output = []
+        for car in self.vehicles:
+            if car.colour == colour:
+                output.append(car.registration_no)
+
+        return output
+
+    def slots_for_cars_with_colour(self, colour):
+        output = []
+        for car in self.vehicles:
+            if car.colour == colour:
+                output.append(car.slot + 1)
+
+        return output
