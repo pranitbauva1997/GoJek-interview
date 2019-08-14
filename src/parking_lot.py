@@ -5,10 +5,11 @@ class ParkingLot:
 
     def __init__(self, size):
         self.vehicles = [None] * size
+        print 'Created a parking lot with {} slots'.format(size)
 
     def add(self, car):
         slot = self.get_first_empty()
-        if slot > len(self.vehicles) - 1:
+        if slot > len(self.vehicles) - 1 or slot is None:
             # Raise an exception here
             return 'Sorry parking lot is full'
 
@@ -56,7 +57,7 @@ class ParkingLot:
         output = []
         for car in self.vehicles:
             if car.colour == colour:
-                output.append(car.slot + 1)
+                output.append(str(car.slot + 1))
 
         return output
 
