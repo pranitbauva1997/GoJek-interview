@@ -59,3 +59,10 @@ class ParkingLot:
                 output.append(car.slot + 1)
 
         return output
+
+    def slot_for_registration_number(self, registration_no):
+        for car in self.vehicles:
+            if car.registration_no == registration_no:
+                return str(car.slot + 1)
+
+        return 'Not found'

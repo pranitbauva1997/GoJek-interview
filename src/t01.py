@@ -62,6 +62,9 @@ class TestParkingLot(unittest.TestCase):
         self.assertEqual([1, 4], white_cars)
         self.assertNotEqual([1, 3], white_cars)
 
+        white_cars = pk.slot_for_registration_number("ABC")
+        self.assertEqual('1', white_cars)
+
         pk.eject(1)
         pk.status()
 
