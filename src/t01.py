@@ -1,0 +1,41 @@
+import unittest
+from parking_lot import ParkingLot
+
+class TestParkingLot(unittest.TestCase):
+
+    def test_pk_10_cars_valid(self):
+        pk = ParkingLot(10)
+        self.assertEqual([None]*10, pk.vehicles)
+        self.assertEqual(10, pk.size)
+        self.assertNotEqual(None, pk.size)
+
+    def test_pk_10_cars_invalid(self):
+        pk = ParkingLot(10)
+        pk.vehicles[1] = 1
+        self.assertNotEqual([None]*10, pk.vehicles)
+
+    def test_pk_3_get_first_empty_valid(self):
+        pk = ParkingLot(3)
+
+        # Test for empty parking lot giving 0th index
+        self.assertEqual(0, pk.get_first_empty())
+
+        # Filling up the 0th index with a car
+        pk.vehicles[0] = 1
+        self.assertEqual(1, pk.get_first_empty())
+
+        # Filling up the 1st index with a car
+        pk.vehicles[1] = 2
+        self.assertEqual(2, pk.get_first_empty())
+
+        # Removing the car at 1st index from parking lot
+        pk.vehicles[1] = None
+        self.assertEqual(1, pk.get_first_empty())
+
+        # Removing the car at 0th index from parking lot
+        pk.vehicles[0] = None
+        self.assertEqual(0, pk.get_first_empty())
+
+
+if __name__ == '__main__':
+    unittest.main()
