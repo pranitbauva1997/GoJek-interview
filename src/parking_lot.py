@@ -8,6 +8,10 @@ class ParkingLot:
 
     def add(self, car):
         slot = self.get_first_empty()
+        if slot > len(self.vehicles) - 1:
+            # Raise an exception here
+            return 'Sorry parking lot is full'
+
         self.vehicles[slot] = car
         print 'Allocated slot number: {}'.format(slot + 1)
         return slot
@@ -31,7 +35,7 @@ class ParkingLot:
 
     def status(self):
         print '{0:<10} {1:<20} {2:<10}'.format('Slot No.', 'Registration No',
-                                            'Colour')
+                                               'Colour')
         for car in self.vehicles:
             if car is None:
                 continue
