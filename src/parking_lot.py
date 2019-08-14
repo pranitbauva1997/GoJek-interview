@@ -14,6 +14,9 @@ class ParkingLot:
 
     def get_first_empty(self):
         i = 0
+
+        # Raise initialization exception
+
         for car in self.vehicles:
             if car is None:
                 return i
@@ -25,3 +28,15 @@ class ParkingLot:
         self.vehicles[slot] = None
         car_ejected.slot = None
         print "Slot number " + str(slot + 1) + " is free"
+
+    def status(self):
+        print '{0:<10} {1:<20} {2:<10}'.format('Slot No.', 'Registration No',
+                                            'Colour')
+        for car in self.vehicles:
+            if car is None:
+                continue
+
+            print '{0:<10} {1:<20} {2:<10}'.format(car.slot + 1,
+                                                   car.registration_no,
+                                                   car.color)
+

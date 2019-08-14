@@ -47,6 +47,15 @@ class TestParkingLot(unittest.TestCase):
         pk.eject(0)
         self.assertEqual(None, pk.vehicles[0])
 
+    def test_pk_status_valid(self):
+        pk = ParkingLot(3)
+        car1 = Car.create_and_park(pk, "ABC", "White")
+        car2 = Car.create_and_park(pk, "MNO", "Gray")
+        car3 = Car.create_and_park(pk, "XYZ", "Black")
+
+        pk.eject(1)
+        pk.status()
+
 
 if __name__ == '__main__':
     unittest.main()
