@@ -2,7 +2,7 @@ import unittest
 from parking_lot import ParkingLot
 from car         import Car
 
-class TestParkingLot(unittest.TestCase):
+class TestParkingLotCar(unittest.TestCase):
 
     def test_pk_10_cars_valid(self):
         pk = ParkingLot(10)
@@ -47,26 +47,30 @@ class TestParkingLot(unittest.TestCase):
         pk.leave(0)
         self.assertEqual(None, pk.vehicles[0])
 
-    def test_registration_nos_for_cars_with_colour(self):
-        pk = ParkingLot(4)
-        Car.create_and_park(pk, "ABC", "White")
-        Car.create_and_park(pk, "MNO", "Gray")
-        Car.create_and_park(pk, "PQR", "Black")
-        Car.create_and_park(pk, "XYZ", "White")
+class TestParkingLotCarOperations(unittest.TestCase):
+    def setUp(self):
+        self.pk = ParkingLot(4)
+        Car.create_and_park(self.pk, "ABC", "White")
+        Car.create_and_park(self.pk, "MNO", "Gray")
+        Car.create_and_park(self.pk, "PQR", "Black")
+        Car.create_and_park(self.pk, "XYZ", "White")
 
-        white_cars = pk.registration_numbers_for_cars_with_colour("White")
+    def test_registration_numbers_for_cars_with_colour(self):
+        white_cars = self.pk.registration_numbers_for_cars_with_colour("White")
         self.assertEqual(["ABC", "XYZ"], white_cars)
         self.assertNotEqual(["ABC", "MNO"], white_cars)
 
-        white_cars = pk.slot_numbers_for_cars_with_colour("White")
+    def test_slot_numbers_for_cars_with_colour(self):
+        white_cars = self.pk.slot_numbers_for_cars_with_colour("White")
         self.assertEqual(['1', '4'], white_cars)
         self.assertNotEqual(['1', '3'], white_cars)
 
-        white_cars = pk.slot_number_for_registration_number("ABC")
+    def test_slot_numbers_for_registration_number(self):
+        white_cars = self.pk.slot_number_for_registration_number("ABC")
         self.assertEqual('1', white_cars)
 
-        pk.leave(1)
-        pk.status()
+        self.pk.leave(1)
+        self.pk.status()
 
 
 if __name__ == '__main__':
