@@ -2,8 +2,7 @@ import unittest
 
 from parking_lot       import ParkingLot
 from car               import Car
-from custom_exceptions import CarInvalidInputs, ParkingLotInvalidInputs
-from custom_exceptions import ParkingLotFull  , ParkingLotUninitialized
+from custom_exceptions import *
 
 str_allocated_slot_number = 'Allocated slot number: {}'
 str_status_raw            = '{0:10} {1:20} {2:10}'
@@ -155,6 +154,9 @@ class TestParkingLotCar(unittest.TestCase):
         message = self.pk.leave(1)
         self.assertEquals(str_leave.format(2), message)
 
+    def test_already_left(self):
+        message = self.pk.leave(1)
+        self.assertRaises(ParkingSlotEmpty, self.pk.leave, 1)
 
 if __name__ == '__main__':
     unittest.main()

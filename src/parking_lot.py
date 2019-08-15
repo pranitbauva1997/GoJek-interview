@@ -1,5 +1,4 @@
-from custom_exceptions import ParkingLotFull, ParkingLotUninitialized
-from custom_exceptions import ParkingLotInvalidInputs
+from custom_exceptions import *
 
 class ParkingLot:
     # Remember to +1 the index of vehicles while displaying the data
@@ -36,6 +35,9 @@ class ParkingLot:
         return i
 
     def leave(self, slot):
+        if self.vehicles[slot] is None:
+            raise ParkingSlotEmpty
+
         car_left = self.vehicles[slot]
         self.vehicles[slot] = None
         car_left.slot = None

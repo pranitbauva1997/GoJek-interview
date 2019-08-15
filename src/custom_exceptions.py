@@ -10,3 +10,5 @@ class CarInvalidInputs(Exception):
 class ParkingLotInvalidInputs(Exception):
     pass
 
+class ParkingSlotEmpty(Exception):
+    pass

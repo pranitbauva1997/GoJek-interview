@@ -1,5 +1,4 @@
-from custom_exceptions import CarInvalidInputs
-from custom_exceptions import ParkingLotFull, ParkingLotUninitialized
+from custom_exceptions import *
 
 class Car:
     colour = None
