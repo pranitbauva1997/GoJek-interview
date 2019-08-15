@@ -17,7 +17,8 @@ try:
             _, message = Car.create_and_park(pk, line[1], line[2])
             print message
         elif line[0] == 'leave':
-            pk.leave(int(line[1]) - 1)
+            message = pk.leave(int(line[1]) - 1)
+            print message
         elif line[0] == 'status':
             pk.status()
         elif line[0] == 'registration_numbers_for_cars_with_colour':

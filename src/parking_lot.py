@@ -31,7 +31,7 @@ class ParkingLot:
         car_left = self.vehicles[slot]
         self.vehicles[slot] = None
         car_left.slot = None
-        print "Slot number " + str(slot + 1) + " is free"
+        return "Slot number " + str(slot + 1) + " is free"
 
     def status(self):
         print '{0:<10} {1:<20} {2:<10}'.format('Slot No.', 'Registration No',
