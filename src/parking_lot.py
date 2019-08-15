@@ -11,12 +11,10 @@ class ParkingLot:
         slot = self.get_first_empty()
         if slot > len(self.vehicles) - 1 or slot is None:
             # Raise an exception here
-            print 'Sorry, parking lot is full'
-            return None
+            return None, 'Sorry, parking lot is full'
 
         self.vehicles[slot] = car
-        print 'Allocated slot number: {}'.format(slot + 1)
-        return slot
+        return slot,  'Allocated slot number: {}'.format(slot + 1)
 
     def get_first_empty(self):
         i = 0

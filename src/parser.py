@@ -14,7 +14,8 @@ try:
         if   line[0] == 'create_parking_lot':
             pk = ParkingLot(int(line[1]))
         elif line[0] == 'park':
-            Car.create_and_park(pk, line[1], line[2])
+            _, message = Car.create_and_park(pk, line[1], line[2])
+            print message
         elif line[0] == 'leave':
             pk.leave(int(line[1]) - 1)
         elif line[0] == 'status':
@@ -32,5 +33,5 @@ try:
 
 except EOFError:
     sys.exit(0)
-except Exception:
+except Exception as e:
     print e

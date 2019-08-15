@@ -13,11 +13,12 @@ class Car:
             # Raise an exception
             pass
 
-        self.slot = parking_lot.add(self)
+        self.slot, message = parking_lot.add(self)
+        return message
 
     @staticmethod
     def create_and_park(parking_lot, registration_no, colour):
         car = Car(registration_no, colour)
-        car.park(parking_lot)
+        message = car.park(parking_lot)
 
-        return car
+        return car, message

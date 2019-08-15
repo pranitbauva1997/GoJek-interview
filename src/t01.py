@@ -39,7 +39,7 @@ class TestParkingLotCar(unittest.TestCase):
 
     def test_pk_car_complete_valid(self):
         pk = ParkingLot(3)
-        car = Car.create_and_park(pk, "ABC", "White")
+        car, _ = Car.create_and_park(pk, "ABC", "White")
 
         self.assertEqual(car, pk.vehicles[car.slot])
         self.assertEqual(1, pk.get_first_empty())
@@ -50,10 +50,11 @@ class TestParkingLotCar(unittest.TestCase):
 class TestParkingLotCarOperations(unittest.TestCase):
     def setUp(self):
         self.pk = ParkingLot(4)
-        Car.create_and_park(self.pk, "ABC", "White")
-        Car.create_and_park(self.pk, "MNO", "Gray")
-        Car.create_and_park(self.pk, "PQR", "Black")
-        Car.create_and_park(self.pk, "XYZ", "White")
+        _, m1 = Car.create_and_park(self.pk, "ABC", "White")
+        _, m2 = Car.create_and_park(self.pk, "MNO", "Gray")
+        _, m3 = Car.create_and_park(self.pk, "PQR", "Black")
+        _, m4 = Car.create_and_park(self.pk, "XYZ", "White")
+        self.messages = [m1, m2, m3, m4]
 
     def test_registration_numbers_for_cars_with_colour(self):
         white_cars = self.pk.registration_numbers_for_cars_with_colour("White")
