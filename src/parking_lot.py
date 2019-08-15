@@ -29,10 +29,10 @@ class ParkingLot:
 
             i = i + 1
 
-    def eject(self, slot):
-        car_ejected = self.vehicles[slot]
+    def leave(self, slot):
+        car_left = self.vehicles[slot]
         self.vehicles[slot] = None
-        car_ejected.slot = None
+        car_left.slot = None
         print "Slot number " + str(slot + 1) + " is free"
 
     def status(self):
@@ -46,7 +46,7 @@ class ParkingLot:
                                                    car.registration_no,
                                                    car.colour)
 
-    def registration_nos_for_cars_with_colour(self, colour):
+    def registration_numbers_for_cars_with_colour(self, colour):
         output = []
         for car in self.vehicles:
             if car.colour == colour:
@@ -54,7 +54,7 @@ class ParkingLot:
 
         return output
 
-    def slots_for_cars_with_colour(self, colour):
+    def slot_numbers_for_cars_with_colour(self, colour):
         output = []
         for car in self.vehicles:
             if car.colour == colour:
@@ -62,7 +62,7 @@ class ParkingLot:
 
         return output
 
-    def slot_for_registration_number(self, registration_no):
+    def slot_number_for_registration_number(self, registration_no):
         for car in self.vehicles:
             if car.registration_no == registration_no:
                 return str(car.slot + 1)
