@@ -27,7 +27,7 @@ class Car:
     @staticmethod
     def create_and_park(parking_lot, registration_no, colour):
         if parking_lot is None or parking_lot.vehicles is None:
-            raise ParkingLotUninitialized("Please initialize parking lot")
+            raise ParkingLotUninitialized('Please initialize parking lot')
 
         car = Car(registration_no, colour)
         try:

@@ -25,7 +25,7 @@ class ParkingLot:
         i = 0
 
         if self is None or self.vehicles is None:
-            raise ParkingLotUninitialized("Please initialize parking lot")
+            raise ParkingLotUninitialized('Please initialize parking lot')
 
         for car in self.vehicles:
             if car is None:
@@ -39,7 +39,7 @@ class ParkingLot:
         car_left = self.vehicles[slot]
         self.vehicles[slot] = None
         car_left.slot = None
-        return "Slot number " + str(slot + 1) + " is free"
+        return 'Slot number ' + str(slot + 1) + ' is free'
 
     def status(self):
         messages = []

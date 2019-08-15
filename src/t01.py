@@ -19,7 +19,7 @@ class TestParkingLotCarInternals(unittest.TestCase):
     def test_invalid_parking_lot_init(self):
         self.assertRaises(ParkingLotInvalidInputs, ParkingLot, None)
         self.assertRaises(ParkingLotInvalidInputs, ParkingLot, -1)
-        self.assertRaises(ParkingLotInvalidInputs, ParkingLot, "1")
+        self.assertRaises(ParkingLotInvalidInputs, ParkingLot, '1')
         self.assertRaises(ParkingLotInvalidInputs, ParkingLot, 1.1)
 
     def test_car_invalid_inputs(self):
@@ -27,9 +27,9 @@ class TestParkingLotCarInternals(unittest.TestCase):
         self.assertRaises(CarInvalidInputs,
                           Car.create_and_park, pk, None, None)
         self.assertRaises(CarInvalidInputs,
-                          Car.create_and_park, pk, "ABC", None)
+                          Car.create_and_park, pk, 'ABC', None)
         self.assertRaises(CarInvalidInputs,
-                          Car.create_and_park, pk, None, "White")
+                          Car.create_and_park, pk, None, 'White')
 
     def test_get_first_empty_barebones(self):
         pk = ParkingLot(3)
@@ -77,21 +77,21 @@ class TestParkingLotCarInternals(unittest.TestCase):
     def test_pk_3_get_first_empty_overflow(self):
         pk = ParkingLot(3)
         self.assertEqual([None] * 3, pk.vehicles)
-        car1, m1 = Car.create_and_park(pk, "ABC", "White")
-        car2, m2 = Car.create_and_park(pk, "MNO", "Gray")
-        car3, m3 = Car.create_and_park(pk, "PQR", "Black")
+        car1, m1 = Car.create_and_park(pk, 'ABC', 'White')
+        car2, m2 = Car.create_and_park(pk, 'MNO', 'Gray')
+        car3, m3 = Car.create_and_park(pk, 'PQR', 'Black')
 
         self.assertEqual(3, pk.get_first_empty())
         self.assertRaises(ParkingLotFull,
-                          Car.create_and_park, pk, "XYZ", "White")
+                          Car.create_and_park, pk, 'XYZ', 'White')
 
     def test_pk_not_initialized(self):
         self.assertRaises(ParkingLotUninitialized,
-                          Car.create_and_park, None, "ABC", "White")
+                          Car.create_and_park, None, 'ABC', 'White')
 
     def test_pk_car_complete_valid(self):
         pk = ParkingLot(3)
-        car, _ = Car.create_and_park(pk, "ABC", "White")
+        car, _ = Car.create_and_park(pk, 'ABC', 'White')
 
         self.assertEqual(car, pk.vehicles[car.slot])
         self.assertEqual(1, pk.get_first_empty())
@@ -112,10 +112,10 @@ class TestParkingLotCar(unittest.TestCase):
         ]
     def setUp(self):
         self.pk = ParkingLot(4)
-        _, m1 = Car.create_and_park(self.pk, "ABC", "White")
-        _, m2 = Car.create_and_park(self.pk, "MNO", "Gray")
-        _, m3 = Car.create_and_park(self.pk, "PQR", "Black")
-        _, m4 = Car.create_and_park(self.pk, "XYZ", "White")
+        _, m1 = Car.create_and_park(self.pk, 'ABC', 'White')
+        _, m2 = Car.create_and_park(self.pk, 'MNO', 'Gray')
+        _, m3 = Car.create_and_park(self.pk, 'PQR', 'Black')
+        _, m4 = Car.create_and_park(self.pk, 'XYZ', 'White')
         self.messages = [m1, m2, m3, m4]
         self.str_status = self.prepare_status()
 
@@ -134,17 +134,17 @@ class TestParkingLotCar(unittest.TestCase):
         self.assertEquals(self.str_status, messages)
 
     def test_registration_numbers_for_cars_with_colour(self):
-        white_cars = self.pk.registration_numbers_for_cars_with_colour("White")
-        self.assertEqual(["ABC", "XYZ"], white_cars)
-        self.assertNotEqual(["ABC", "MNO"], white_cars)
+        white_cars = self.pk.registration_numbers_for_cars_with_colour('White')
+        self.assertEqual(['ABC', 'XYZ'], white_cars)
+        self.assertNotEqual(['ABC', 'MNO'], white_cars)
 
     def test_slot_numbers_for_cars_with_colour(self):
-        white_cars = self.pk.slot_numbers_for_cars_with_colour("White")
+        white_cars = self.pk.slot_numbers_for_cars_with_colour('White')
         self.assertEqual(['1', '4'], white_cars)
         self.assertNotEqual(['1', '3'], white_cars)
 
     def test_slot_numbers_for_registration_number(self):
-        white_cars = self.pk.slot_number_for_registration_number("ABC")
+        white_cars = self.pk.slot_number_for_registration_number('ABC')
         self.assertEqual('1', white_cars)
 
     def test_leave(self):
