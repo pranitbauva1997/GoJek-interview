@@ -17,3 +17,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 #   ruby $DIR/../main.rb $1
 # 
 # Important: Above commands is just examples, please modify to suit your requirement as necessary
+
+python src/parser.py <$1
