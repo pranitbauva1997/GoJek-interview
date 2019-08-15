@@ -1,5 +1,5 @@
 import sys
-
+import pdb
 from parking_lot import ParkingLot
 from car         import Car
 
@@ -14,11 +14,17 @@ try:
         if   line[0] == 'create_parking_lot':
             pk = ParkingLot(int(line[1]))
         elif line[0] == 'park':
-            _, message = Car.create_and_park(pk, line[1], line[2])
-            print message
+            try:
+                _, message = Car.create_and_park(pk, line[1], line[2])
+                print message
+            except Exception as e:
+                print e
         elif line[0] == 'leave':
-            message = pk.leave(int(line[1]) - 1)
-            print message
+            try:
+                message = pk.leave(int(line[1]) - 1)
+                print message
+            except Exception as e:
+                print e
         elif line[0] == 'status':
             messages = pk.status()
             for message in messages:

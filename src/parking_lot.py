@@ -1,17 +1,22 @@
+from custom_exceptions import ParkingLotFull, ParkingLotUninitialized
+from custom_exceptions import ParkingLotInvalidInputs
+
 class ParkingLot:
     # Remember to +1 the index of vehicles while displaying the data
     # and -1 the index of vehicles while storing the data
     vehicles = None
 
     def __init__(self, size):
+        if (size is None) or (not isinstance(size, int)) or (size < 1):
+            raise ParkingLotInvalidInputs
+
         self.vehicles = [None] * size
         print 'Created a parking lot with {} slots'.format(size)
 
     def add(self, car):
         slot = self.get_first_empty()
-        if slot > len(self.vehicles) - 1 or slot is None:
-            # Raise an exception here
-            return None, 'Sorry, parking lot is full'
+        if slot > len(self.vehicles) - 1:
+            raise ParkingLotFull('Sorry, parking lot is full')
 
         self.vehicles[slot] = car
         return slot,  'Allocated slot number: {}'.format(slot + 1)
@@ -19,13 +24,16 @@ class ParkingLot:
     def get_first_empty(self):
         i = 0
 
-        # Raise initialization exception
+        if self is None or self.vehicles is None:
+            raise ParkingLotUninitialized("Please initialize parking lot")
 
         for car in self.vehicles:
             if car is None:
                 return i
 
             i = i + 1
+
+        return i
 
     def leave(self, slot):
         car_left = self.vehicles[slot]
@@ -71,3 +79,6 @@ class ParkingLot:
                 return str(car.slot + 1)
 
         return 'Not found'
+
+    def __str__(self):
+        return ', '.join(self.vehicles)
