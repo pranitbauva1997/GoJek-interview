@@ -11,7 +11,7 @@ class ParkingLot:
             raise ParkingLotInvalidInputs
 
         self.vehicles = [None] * size
-        print 'Created a parking lot with {} slots'.format(size)
+        print('Created a parking lot with {} slots'.format(size))
 
     def add(self, car):
         slot = self.get_first_empty()

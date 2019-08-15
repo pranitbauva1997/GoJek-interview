@@ -139,13 +139,17 @@ class TestParkingLotCar(unittest.TestCase):
         self.assertNotEqual(['ABC', 'MNO'], white_cars)
 
     def test_slot_numbers_for_cars_with_colour(self):
-        white_cars = self.pk.slot_numbers_for_cars_with_colour('White')
-        self.assertEqual(['1', '4'], white_cars)
-        self.assertNotEqual(['1', '3'], white_cars)
+        slot_numbers = self.pk.slot_numbers_for_cars_with_colour('White')
+        self.assertEqual(['1', '4'], slot_numbers)
+        self.assertNotEqual(['1', '3'], slot_numbers)
 
     def test_slot_numbers_for_registration_number(self):
-        white_cars = self.pk.slot_number_for_registration_number('ABC')
-        self.assertEqual('1', white_cars)
+        slot_numbers = self.pk.slot_number_for_registration_number('ABC')
+        self.assertEqual('1', slot_numbers)
+
+    def test_slot_numbers_for_registration_number_not_found(self):
+        slot_numbers = self.pk.slot_number_for_registration_number('XXX')
+        self.assertEqual('Not found', slot_numbers)
 
     def test_leave(self):
         message = self.pk.leave(1)
