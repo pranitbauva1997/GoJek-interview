@@ -34,15 +34,20 @@ class ParkingLot:
         return "Slot number " + str(slot + 1) + " is free"
 
     def status(self):
-        print '{0:<10} {1:<20} {2:<10}'.format('Slot No.', 'Registration No',
-                                               'Colour')
+        messages = []
+        messages.append('{0:<10} {1:<20} {2:<10}'.format('Slot No.',
+                                                         'Registration No',
+                                                         'Colour'))
         for car in self.vehicles:
             if car is None:
                 continue
 
-            print '{0:<10} {1:<20} {2:<10}'.format(car.slot + 1,
-                                                   car.registration_no,
-                                                   car.colour)
+            message = '{0:<10} {1:<20} {2:<10}'.format(car.slot + 1,
+                                                       car.registration_no,
+                                                       car.colour)
+            messages.append(message)
+
+        return messages
 
     def registration_numbers_for_cars_with_colour(self, colour):
         output = []

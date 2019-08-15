@@ -20,7 +20,9 @@ try:
             message = pk.leave(int(line[1]) - 1)
             print message
         elif line[0] == 'status':
-            pk.status()
+            messages = pk.status()
+            for message in messages:
+                print message
         elif line[0] == 'registration_numbers_for_cars_with_colour':
             arr = pk.registration_numbers_for_cars_with_colour(line[1])
             print ', '.join(arr)
